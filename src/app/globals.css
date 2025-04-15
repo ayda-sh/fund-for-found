@@ -26,6 +26,5 @@ body {
 }
 
 .placeholder-custom::placeholder {  
-  font-size: 13px; /* سایز دلخواه */  
-  
+  font-size: 13px;  
 }  

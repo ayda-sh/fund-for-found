@@ -3,7 +3,7 @@ function Search() {
     <>
       <input
         data-has-listeners="true"
-        className="border border-[#E7E7E7] rounded-md w-64 h-10 py-3.5 pl-9 placeholder-[#959595] placeholder-custom focus:border-[#8D75F7]"
+        className="border border-[#E7E7E7] rounded-md w-full md:w-64 h-10 py-3.5 pl-9 placeholder-[#959595] placeholder-custom focus:border-[#8D75F7]"
         type="text"
         placeholder="Search brand, category, tag or..."
       />
