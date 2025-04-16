@@ -3,6 +3,44 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Primary */
+  --primary-50: #F7F5FF;
+  --primary-75: #EDE9FE;
+  --primary-100: #D7CFF9;
+  --primary-200: #AA99EC;
+  --primary-300: #8D75F7;
+  --primary-400: #483B8C;
+  --primary: #644FC1;
+
+  /* Secondary */
+  --secondary-50: #DBEEFF;
+  --secondary-75: #3CABFF;
+  --secondary-100: #0881EA;
+  --secondary-200: #4829D3;
+  --secondary-300: #18066C;
+  --secondary-400: #0B003E;
+  --secondary: #270F94;
+
+  /* Grayscale */
+  --color-black: #0C0C0C;
+  --color-white: #FFFFFF;
+  --gray-1: #2D2D2D;
+  --gray-2: #444444;
+  --gray-3: #505050;
+  --gray-4: #717171;
+
+  --light-1: #959595;
+  --light-2: #C7C6C6;
+  --light-3: #E7E7E7;
+  --light-4: #F5F5F5;
+
+  /* Status Colors */
+  --error: #C91433;
+  --error-light: #FAE7EB;
+  --success: #146C43;
+  --success-light: #D1F7E5;
+
 }
 
 @theme inline {
