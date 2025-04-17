@@ -16,7 +16,7 @@ function SignupCode() {
           <span className="text-[var(--gray-1)]">09120000000</span>
         </p>
         <span className="h-[1px] bg-[var(--light-3)] w-full mt-10 mb-5"></span>
-        <Link href="#">
+        <Link href="/sign-up/phone-number/confirm-phone-number">
           <button className="text-[var(--primary)] font-semibold focus:outline-none">
             ok, continue
           </button>
