@@ -8,7 +8,7 @@ function ConfirmEmail() {
       <NavBar />
       <main>
         <div className="mx-auto flex flex-col items-center justify-center relative">
-          <Link href="/">
+          <Link href="/sign-up">
             <img
               className="absolute top-7 left-32 hidden md:block"
               src="/images/arrow-left.svg"
