@@ -36,7 +36,7 @@ export function NavBar() {
       <div className="lg:mx-32 flex items-center justify-between">
         <div className="">
           <Link href="/">
-            <Image src="logo.svg" width={27} height={27} alt="Logo" />
+            <Image src="/images/logo.svg" width={27} height={27} alt="Logo" />
           </Link>
         </div>
         <div className="flex items-center">

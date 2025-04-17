@@ -15,26 +15,32 @@ function HomePage() {
           guidance, and connections you need to succeed, ensuring that you're
           never alone on your journey
         </p>
-        <div className="flex flex-col justify-center items-center mx-auto w-80 border border-[var(--primary)] rounded-2xl px-8 py-8"> 
-     
-         <Image
+        <div className="flex flex-col justify-center items-center mx-auto w-80 border border-[var(--primary)] rounded-2xl px-8 py-8">
+          <Image
             src="/images/Brand-or-Organization.svg"
             width={88}
             height={88}
             alt="Brand or Organization"
-            
           />
-       
-          <h2 className="mt-8 text-[var(--primary)] text-2xl font-semibold">Brand or Organization</h2>
+
+          <h2 className="mt-8 text-[var(--primary)] text-2xl font-semibold">
+            Brand or Organization
+          </h2>
           <div className="text-left">
-          <p className="text-[var(--light-1)]  mt-4 mb-16">
-            If your brand is established and you're looking for continuous
-            support, get started now.
-          </p>
+            <p className="text-[var(--light-1)]  mt-4 mb-16">
+              If your brand is established and you're looking for continuous
+              support, get started now.
+            </p>
           </div>
           <div className="flex flex-col gap-3">
-            <button className="bg-[var(--primary)] w-65 h-10 rounded-sm text-[var(--color-white)]">Start</button>
-            <Link className="text-[var(--primary-300)]" href="/about">learn more</Link>
+            <Link href="/sign-up">
+              <button className="bg-[var(--primary)] w-65 h-10 rounded-sm text-[var(--color-white)]">
+                Start
+              </button>
+            </Link>
+            <Link className="text-[var(--primary-300)]" href="/about">
+              learn more
+            </Link>
           </div>
         </div>
       </div>
