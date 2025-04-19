@@ -8,9 +8,9 @@ function SignUp() {
       <NavBar />
       <main>
         <div className="mx-auto flex flex-col items-center justify-center relative">
-          <Link href="/">
+          <Link className="hidden md:block" href="/">
             <img
-              className="absolute top-7 left-32 hidden md:block"
+              className="absolute top-7 left-32"
               src="/images/arrow-left.svg"
               alt="arrow-left"
             />
