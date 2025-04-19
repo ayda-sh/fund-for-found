@@ -91,11 +91,11 @@ function SignUp() {
           This site is proected by reCAPTCHA and the Google
           <Link className="text-[var(--primary)] mx-1" href="/privacy-policy">
             Privacy Policy
-          </Link>{" "}
-          and{" "}
+          </Link>
+          and
           <Link className="text-[var(--primary)] mx-1" href="/term-of-use">
             Terms of Service
-          </Link>{" "}
+          </Link>
           apply.
         </p>
       </div>
