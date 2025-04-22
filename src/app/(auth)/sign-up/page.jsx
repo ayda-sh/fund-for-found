@@ -1,8 +1,70 @@
+"use client";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { NavBar } from "@/app/components/navbar/navbar";
 import Image from "next/image";
 import Link from "next/link";
+import * as yup from "yup";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 function SignUp() {
+  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowPassword2, setIsShowPassword2] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const schema = yup.object({
+    username: yup.string().required(),
+    email: yup.string().email().required(),
+    password: yup
+      .string()
+      .required()
+      .min(8)
+      .max(16)
+      .matches(
+        /^(?=.*[A-Z])/,
+        "Password must contain at least one uppercase letter."
+      ),
+    // confirmpassword: yup
+    //   .string()
+    //   .required()
+    //   .oneOf([yup.ref("password"), null], "Passwords must match."),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+
+  const submitSignUpForm = async (user) => {
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`,
+        user
+      );
+      console.log("User successfully signed up", response.data);
+      localStorage.setItem("token", response.data.jwt);
+      router.push("/sign-up/confirm-email");
+    } catch (error) {
+      setError(error.response?.data?.message || "An unexpected error occurred.");
+    }
+  };
+
+  const toggleShowPassword = (e) => {
+    e.preventDefault();
+    setIsShowPassword(!isShowPassword);
+  };
+
+  const toggleShowPassword2 = (e) => {
+    e.preventDefault();
+    setIsShowPassword2(!isShowPassword2);
+  };
   return (
     <>
       <NavBar />
@@ -38,44 +100,169 @@ function SignUp() {
               <div className="grow h-[1px] bg-[var(--light-3)]"></div>
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit(submitSignUpForm)}>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-[#2D2D2D]">
-                  First name
+                <label className="block text-sm font-medium text-[(var(--gray-1))]">
+                  Username
                 </label>
                 <input
+                  {...register("username")}
                   data-has-listeners="true"
                   type="text"
-                  className="mt-1 block w-full h-10 border border-[var(--primary-300)] rounded-md shadow-sm"
+                  className="mt-1 block w-full h-10 border border-[var(--primary-300)] rounded-md shadow-sm px-4"
                   required
                 />
+                {errors?.username ? (
+                  <span className="text-[var(--error)] text-sm">
+                    {errors.username.message}
+                  </span>
+                ) : null}
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-[#2D2D2D]">
-                  Last name
-                </label>
-                <input
-                  data-has-listeners="true"
-                  type="text"
-                  className="mt-1 block w-full h-10 border border-[var(--primary-300)] rounded-md shadow-sm"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-[#2D2D2D]">
+                <label className="block text-sm font-medium text-[(var(--gray-1))]">
                   Email address
                 </label>
                 <input
+                  {...register("email")}
                   data-has-listeners="true"
                   type="email"
                   placeholder="e.g.yourname@yahoo.com"
                   className="mt-1 block w-full h-10 border border-[var(--primary-300)] rounded-md shadow-sm placeholder:text-[var(--light-2)] placeholder-custom px-4"
                   required
                 />
+                {errors?.email ? (
+                  <span className="text-[var(--error)] text-sm">
+                    {errors.email.message}
+                  </span>
+                ) : null}
                 <p className="text-xs text-[var(--primary)] mt-1">
                   We will send you a 6 digit code to your email.
                 </p>
               </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-[(var(--gray-1))]">
+                  Password
+                </label>
+                <div className="flex items-center border border-[var(--primary-300)] rounded-md shadow-sm px-4">
+                  <input
+                    {...register("password")}
+                    data-has-listeners="true"
+                    type={isShowPassword ? "text" : "password"}
+                    className="mt-1 block w-full h-10 focus:outline-none"
+                    required
+                  />
+                  <button onClick={toggleShowPassword}>
+                    {isShowPassword ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-6 text-[var(--light-2)] cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-6 text-[var(--light-2)] cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {errors?.password ? (
+                  <span className="text-[var(--error)] text-sm">
+                    {errors.password.message}
+                  </span>
+                ) : null}
+              </div>
+
+              {/* <div className="mb-4">
+                <label className="block text-sm font-medium text-[(var(--gray-1))]">
+                  Re-enter password
+                </label>
+                <div className="flex items-center border border-[var(--primary-300)] rounded-md shadow-sm px-4">
+                  <input
+                    data-has-listeners="true"
+                    type={isShowPassword2 ? "text" : "password"}
+                    className="mt-1 block w-full h-10 focus:outline-none"
+                    required
+                  />
+
+                  <button onClick={toggleShowPassword2}>
+                    {isShowPassword2 ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-6 text-[var(--light-2)] cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="size-6 text-[var(--light-2)] cursor-pointer"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88"
+                        />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {errors?.confirmpassword ? (
+                  <span className="text-[var(--error)] text-sm">
+                    {errors.confirmpassword.message}
+                  </span>
+                ) : null}
+              </div> */}
+
+              {error && (
+                <p className="text-[var(--error)] bg-[#fe555521] border border-[#c9143373] text-sm rounded p-1">
+                  {error?.response?.data?.message ||
+                    "An unexpected error occurred."}
+                </p>
+              )}
+
               <button
                 type="submit"
                 className="w-full bg-[var(--primary)] text-white py-3.5 rounded-md focus:outline-none mt-6"

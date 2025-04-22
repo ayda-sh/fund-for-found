@@ -91,7 +91,7 @@ function LoginForm() {
 
             <form onSubmit={handleSubmit(submitLoginForm)}>
               <div className="">
-                <label className="block text-sm font-semibold text-[var(--gray-2)]">
+                <label className="block text-sm font-medium text-[var(--gray-2)]">
                   Email address
                 </label>
                 <input
@@ -109,7 +109,7 @@ function LoginForm() {
                 </span>
               ) : null}
               <div className="my-4 flex flex-col">
-                <label className="block text-sm font-semibold text-[var(--gray-2)]">
+                <label className="block text-sm font-medium text-[var(--gray-2)]">
                   Password
                 </label>
 
@@ -167,7 +167,7 @@ function LoginForm() {
                   </span>
                 ) : null}
                 <Link
-                  href="/forget/password"
+                  href="/forget-password"
                   className="text-sm text-[var(--primary)] mt-1"
                 >
                   Forget your password?
