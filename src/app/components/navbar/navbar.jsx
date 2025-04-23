@@ -17,11 +17,11 @@ export function NavBar() {
     },
     {
       text: "About us",
-      href: "/about-us",
+      href: "#",
     },
     {
       text: "Help & Support",
-      href: "/help-and-support",
+      href: "#",
     },
   ];
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +34,7 @@ export function NavBar() {
   return (
     <header>
       <nav className="p-4 border-b border-[#D7CFF9]">
-        <div className="lg:mx-32 flex items-center justify-between">
+        <div className="flex max-w-[1024px] items-center mx-auto justify-between">
           <div className="">
             <Link href="/">
               <Image src="/images/logo.svg" width={27} height={27} alt="Logo" />
@@ -53,11 +53,11 @@ export function NavBar() {
             </ul>
           </div>
 
-          <div className="items-center justify-center gap-6 relative hidden md:flex">
+          <div className="items-center justify-center gap-2 hidden md:flex">
             <Search />
-            <button className="bg-[#644FC1] py-3 px-7 rounded-xl text-sm text-white">
+            <a href="/sign-up" className="bg-[#644FC1] py-3 px-7 rounded-xl text-sm text-white">
               Sign in
-            </button>
+            </a>
           </div>
           <div className="md:hidden">
             <div className="flex">
@@ -129,7 +129,7 @@ export function NavBar() {
               </a>
             </li>
             <li>
-              <a href="#" className="block text-gray-800 hover:text-purple-600">
+              <a href="/sign-up" className="block text-gray-800 hover:text-purple-600">
                 Sign in
               </a>
             </li>
