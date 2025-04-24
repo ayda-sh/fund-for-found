@@ -1,14 +1,14 @@
 function Search() {
   return (
     <>
-      <div className="relative border border-[#E7E7E7] rounded-md focus:outline-none">
+      <div className="relative border border-[var(--light-3)] rounded-md focus:outline-none shadow">
       <input
         data-has-listeners="true"
-        className="w-full md:w-50 h-10 py-3.5 pl-7 placeholder-[#959595] placeholder-custom focus:outline-none"
+        className="w-full md:w-50 h-10 py-3.5 pl-7 placeholder-[var(--light-1)] placeholder-custom focus:outline-none"
         type="text"
         placeholder="Search brand..."
       />
-      <div className="absolute left-2 top-2 transform -translate-y-1/2">
+      <div className="absolute left-2 top-[50%] transform -translate-y-1/2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

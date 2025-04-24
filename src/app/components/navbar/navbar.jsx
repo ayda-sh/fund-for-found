@@ -33,7 +33,7 @@ export function NavBar() {
 
   return (
     <header>
-      <nav className="p-4 border-b border-[#D7CFF9]">
+      <nav className="p-4 border-b border-[var(--primary-100)]">
         <div className="flex max-w-[1024px] items-center mx-auto justify-between">
           <div className="">
             <Link href="/">
@@ -45,7 +45,7 @@ export function NavBar() {
               {Links.map((link) => (
                 <li
                   key={link.text}
-                  className="text-[#444444] hover:text-purple-600"
+                  className="text-[#444444] hover:text-[var(--primary)]"
                 >
                   <Link href={link.href}>{link.text}</Link>
                 </li>
@@ -55,7 +55,7 @@ export function NavBar() {
 
           <div className="items-center justify-center gap-2 hidden md:flex">
             <Search />
-            <a href="/sign-up" className="bg-[#644FC1] py-3 px-7 rounded-xl text-sm text-white">
+            <a href="/sign-up" className="bg-[var(--primary)] py-3 px-7 rounded-xl text-sm text-white">
               Sign in
             </a>
           </div>
@@ -68,7 +68,7 @@ export function NavBar() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="size-8 md:hidden text-[#644FC1] mr-6"
+                  className="size-8 md:hidden text-[var(--primary)] mr-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -82,7 +82,7 @@ export function NavBar() {
                 onClick={toggleMenu}
               >
                 <svg
-                  className="size-9 text-[#644FC1]"
+                  className="size-9 text-[var(--primary)]"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -109,27 +109,27 @@ export function NavBar() {
         {isOpen && (
           <ul className="md:hidden flex flex-col space-y-2 mt-2">
             <li>
-              <a href="#" className="block text-gray-800 hover:text-purple-600">
+              <a href="/" className="block text-gray-800 hover:text-[var(--primary)]">
                 Home
               </a>
             </li>
             <li>
-              <a href="#" className="block text-gray-800 hover:text-purple-600">
+              <a href="/explore" className="block text-gray-800 hover:text-[var(--primary)]">
                 Explore
               </a>
             </li>
             <li>
-              <a href="#" className="block text-gray-800 hover:text-purple-600">
+              <a href="#" className="block text-gray-800 hover:text-[var(--primary)]">
                 About us
               </a>
             </li>
             <li>
-              <a href="#" className="block text-gray-800 hover:text-purple-600">
+              <a href="#" className="block text-gray-800 hover:text-[var(--primary)]">
                 Help & Support
               </a>
             </li>
             <li>
-              <a href="/sign-up" className="block text-gray-800 hover:text-purple-600">
+              <a href="/sign-up" className="block text-gray-800 hover:text-[var(--primary)]">
                 Sign in
               </a>
             </li>

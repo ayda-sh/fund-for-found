@@ -39,7 +39,7 @@ function LoginForm() {
   const submitLoginForm = async (user) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local`,
+        "https://fund-for-found-backend-13.onrender.com/api/auth/local",
         user
       );
       console.log("User logged in:", response.data);

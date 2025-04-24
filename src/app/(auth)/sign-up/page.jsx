@@ -45,7 +45,7 @@ function SignUp() {
   const submitSignUpForm = async (user) => {
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/auth/local/register`,
+        "https://fund-for-found-backend-13.onrender.com/api/auth/local/register",
         user
       );
       console.log("User successfully signed up", response.data);
