@@ -51,7 +51,7 @@ function BrandAndOrganizations() {
           />
         </Link>
         <div className="flex justify-center text-center mx-auto">
-          <div className="flex justify-between md:w-[500px] w-[400px]">
+          <div className="flex justify-between md:w-[500px] w-[380px]">
             <span className="before:content-[''] before:bg-[var(--light-4)] before:h-1 md:before:w-100 before:w-80  before:absolute before:top-[50%] before:-z-1 before:left-[50%] before:transform before:-translate-x-1/2 before:-translate-y-1/2"></span>
             <div className="w-1/2">
               <span className="h-8 w-8 bg-[var(--primary)] rounded-full text-white mx-auto flex items-center justify-center">
