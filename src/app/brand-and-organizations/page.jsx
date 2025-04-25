@@ -92,7 +92,7 @@ function BrandAndOrganizations() {
             <div className="mb-4 w-1/2">
               <label
                 htmlFor="brandName"
-                className="block text-sm font-semibold text-[var(--gray-2)]"
+                className="block md:text-sm text-[12px] font-semibold text-[var(--gray-2)]"
               >
                 Brand/organization name{" "}
                 <span className="text-[#C91433]">*</span>
@@ -109,7 +109,7 @@ function BrandAndOrganizations() {
             <div className="mb-4 w-1/2">
               <label
                 htmlFor="country"
-                className="block text-sm font-semibold text-[var(--gray-2)]"
+                className="block md:text-sm text-[12px] font-semibold text-[var(--gray-2)]"
               >
                 Country <span className="text-[#C91433]">*</span>
               </label>
@@ -134,7 +134,7 @@ function BrandAndOrganizations() {
             <div className="mb-4 w-1/2">
               <label
                 htmlFor="category"
-                className="block text-sm font-semibold text-[var(--gray-2)]"
+                className="block md:text-sm text-[12px] font-semibold text-[var(--gray-2)]"
               >
                 Category <span className="text-[#C91433]">*</span>
               </label>
@@ -151,7 +151,7 @@ function BrandAndOrganizations() {
             <div className="mb-4 w-1/2">
               <label
                 htmlFor="subcategory"
-                className="block text-sm font-semibold text-[var(--gray-2)]"
+                className="block md:text-sm text-[12px] font-semibold text-[var(--gray-2)]"
               >
                 Subcategory <span className="text-[#C91433]">*</span>
               </label>
@@ -169,7 +169,7 @@ function BrandAndOrganizations() {
           <div className="mb-4">
             <label
               htmlFor="brandTags"
-              className="block text-sm font-semibold text-[var(--gray-2)]"
+              className="block md:text-sm text-[12px] font-semibold text-[var(--gray-2)]"
             >
               Brand tags
               <span className="bg-[#1C2024] text-white rounded-xl py-0.5 px-[3px] text-[10px] ml-1">
@@ -234,7 +234,7 @@ function BrandAndOrganizations() {
 
           <button
             type="submit"
-            className="px-6 py-2 bg-[var(--primary)] text-white font-bold rounded"
+            className="px-6 md:w-40 w-full py-2 bg-[var(--primary)] text-white font-bold rounded"
           >
             Continue
           </button>
