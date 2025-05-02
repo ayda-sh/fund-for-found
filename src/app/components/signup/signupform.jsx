@@ -1,4 +1,5 @@
 "use client";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import { NavBar } from "@/app/components/navbar/navbar";
 import Image from "next/image";
