@@ -4,12 +4,18 @@ import { NavBar } from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 function BrandAndOrganizations() {
   const [inputValue, setInputValue] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const [category, setCategory] = useState([]);
+  const [subcategory, setSubcategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
   const allItems = ["Product design", "Web design", "Software", "UI design"];
 
@@ -36,6 +42,39 @@ function BrandAndOrganizations() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // get categories from api
+  const getCategories = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/categories`
+      );
+      setCategory(res.data.data);
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+    }
+  };
+
+  // get subcategories from api
+  const getSubCategories = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/subcategories?populate=category`
+      );
+      setSubcategory(res.data.data);
+    } catch (error) {
+      console.error("Failed to fetch subcategories:", error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+    getSubCategories();
+  }, []);
+
+  const filterSubcategory = subcategory.filter(
+    (sub) => sub.category && sub.category.id == selectedCategory
+  );
 
   return (
     <>
@@ -141,10 +180,22 @@ function BrandAndOrganizations() {
               <select
                 id="category"
                 name="category"
+                value={selectedCategory}
+                onChange={(e) => {
+                  setSelectedCategory(e.target.value);
+                  setSelectedSubcategory("");
+                }}
                 required
                 className="mt-1 block w-full border border-[var(--primary-300)] rounded-md p-2"
               >
-                <option value="">Select category</option>
+                <option value="" className="text-sm">
+                  Select category
+                </option>
+                {category.map((cat) => (
+                  <option className="text-sm" key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -158,10 +209,20 @@ function BrandAndOrganizations() {
               <select
                 id="subcategory"
                 name="subcategory"
+                value={selectedSubcategory}
+                onChange={(e) => setSelectedSubcategory(e.target.value)}
+                disabled={!selectedCategory}
                 required
                 className="mt-1 block w-full border border-[var(--primary-300)] rounded-md p-2"
               >
-                <option value="">Select subcategory</option>
+                <option value="" className="text-sm">
+                  Select subcategory
+                </option>
+                {filterSubcategory.map((sub) => (
+                  <option className="text-sm" key={sub.id} value={sub.id}>
+                    {sub.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -222,6 +283,8 @@ function BrandAndOrganizations() {
               name="terms"
               required
               className="mr-2 leading-tight"
+              checked={isChecked}
+              onChange={() => setIsChecked(!isChecked)}
             />
             <label htmlFor="terms" className="text-sm text-[var(--gray-3)]">
               I agree with the
@@ -234,7 +297,10 @@ function BrandAndOrganizations() {
 
           <button
             type="submit"
-            className="px-6 md:w-40 w-full py-2 bg-[var(--primary)] text-white font-bold rounded"
+            disabled={!isChecked}
+            className={`px-6 md:w-40 w-full py-2 bg-[var(--primary)] text-white font-bold rounded ${
+              isChecked ? "bg-[var(--primary)]" : "bg-[var(--primary-100)]"
+            }`}
           >
             Continue
           </button>
