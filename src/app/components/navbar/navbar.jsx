@@ -129,7 +129,7 @@ export function NavBar() {
               ) : (
                 <button
                   onClick={() => router.push("/sign-up")}
-                  className="bg-[var(--primary)] transition hover:bg-[var(--primary-400)]  py-3 px-7 rounded-xl text-sm text-white cursor-pointer mr-2"
+                  className="bg-[var(--primary)] transition hover:bg-[var(--primary-400)] hidden md:block py-3 px-7 rounded-xl text-sm text-white cursor-pointer mr-2"
                 >
                   Sign in
                 </button>
