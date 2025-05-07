@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import Search from "../search/search";
 
 export function NavBar() {
@@ -26,6 +27,22 @@ export function NavBar() {
   ];
   const [isOpen, setIsOpen] = useState(false);
   const [searh, setSearch] = useState(false);
+  const [user, setUser] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+  const handleRedirect = () => {
+    if (user) {
+      router.push("/brand-and-organizations");
+    } else {
+      router.push("/login");
+    }
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -53,14 +70,31 @@ export function NavBar() {
             </ul>
           </div>
 
-          <div className="items-center justify-center gap-2 hidden md:flex">
-            <Search />
-            <a
-              href="/sign-up"
-              className="bg-[var(--primary)] py-3 px-7 rounded-xl text-sm text-white"
-            >
-              Sign in
-            </a>
+          <div className="items-center justify-center gap-2 flex">
+            <div className="hidden md:flex">
+              <Search />
+            </div>
+
+            {user ? (
+              <div className="relative md:inline-block hidden">
+                <Image
+                  src="/images/user-avatar.png"
+                  width={40}
+                  height={40}
+                  alt="user-avatar"
+                />
+                <span className="absolute inset-0 flex items-center justify-center text-[var(--primary)] font-bold">
+                  {user.username.slice(0, 2).toUpperCase()}
+                </span>
+              </div>
+            ) : (
+              <button
+                onClick={() => router.push("/sign-up")}
+                className="bg-[var(--primary)] transition hover:bg-[var(--primary-400)] hidden md:block py-3 px-7 rounded-xl text-sm text-white cursor-pointer"
+              >
+                Sign in
+              </button>
+            )}
           </div>
           <div className="md:hidden">
             <div className="flex">
@@ -71,7 +105,7 @@ export function NavBar() {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="size-8 md:hidden text-[var(--primary)] mr-6"
+                  className="size-8 md:hidden text-[var(--primary)] mr-3"
                 >
                   <path
                     strokeLinecap="round"
@@ -80,8 +114,30 @@ export function NavBar() {
                   />
                 </svg>
               </button>
-              <button className="md:hidden focus:outline-none focus:ring focus:ring-purple-500" onClick={toggleMenu}>
-              
+              {user ? (
+                <div className="relative inline-block mr-3">
+                  <Image
+                    src="/images/user-avatar.png"
+                    width={40}
+                    height={40}
+                    alt="user-avatar"
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center text-[var(--primary)] font-bold">
+                    {user.username.slice(0, 2).toUpperCase()}
+                  </span>
+                </div>
+              ) : (
+                <button
+                  onClick={() => router.push("/sign-up")}
+                  className="bg-[var(--primary)] transition hover:bg-[var(--primary-400)]  py-3 px-7 rounded-xl text-sm text-white cursor-pointer mr-2"
+                >
+                  Sign in
+                </button>
+              )}
+              <button
+                className="md:hidden focus:outline-none"
+                onClick={toggleMenu}
+              >
                 {isOpen ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -123,57 +179,57 @@ export function NavBar() {
             <Search />
           </div>
         )}
-
-        
       </nav>
       {isOpen && (
-          <div className="absolute flex flex-col justify-between z-40 h-[600px] bg-white w-full border-l border-r border-b border-[var(--light-3)] border-t-0 rounded-bl-2xl rounded-br-2xl">
+        <div className="absolute flex flex-col justify-between z-40 h-[600px] bg-white w-full border-l border-r border-b border-[var(--light-3)] border-t-0 rounded-bl-3xl rounded-br-3xl">
           <div className="p-6">
-          <ul className="md:hidden flex flex-col space-y-3.5 mt-2">
-            <li>
-              <a
-                href="/"
-                className="block text-[var(--primary)] text-[18px]"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                href="/explore"
-                className="block text-[var(--primary)] text-[18px]"
-              >
-                Explore
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block text-[var(--primary)] text-[18px]"
-              >
-                About us
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block text-[var(--primary)] text-[18px]"
-              >
-                Help & Support
-              </a>
-            </li>
-            
-          </ul>
+            <ul className="md:hidden flex flex-col space-y-3.5 mt-2">
+              <li>
+                <a href="/" className="block text-[var(--primary)] text-[18px]">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/explore"
+                  className="block text-[var(--primary)] text-[18px]"
+                >
+                  Explore
+                </a>
+              </li>
+              <li>
+                <a href="#" className="block text-[var(--primary)] text-[18px]">
+                  About us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="block text-[var(--primary)] text-[18px]">
+                  Help & Support
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div className="flex flex-col gap-3 border-t border-[var(--light-3)]">
-           
-           <button className="mt-9 bg-[var(--primary-75)] mx-6 text-[var(--primary)] py-2 rounded border border-[var(--primary-200)]"><Link href="/login">login/signup</Link></button>
-           <button className="mb-9 bg-[var(--primary)] mx-6 text-white py-2 rounded"><Link href="/brand-and-organizations">start</Link></button>
-           
+            {user ? (
+              <p className="mt-9 bg-[var(--primary-75)] mx-6 text-[var(--primary)] py-2 rounded border border-[var(--primary-200)] flex text-center justify-center">
+                Welcome {user.username}
+              </p>
+            ) : (
+              <button className="mt-9 bg-[var(--primary-75)] mx-6 text-[var(--primary)] py-2 rounded border border-[var(--primary-200)] cursor-pointer">
+                <Link href="/login">Login/signup</Link>
+              </button>
+            )}
+
+            <button
+              onClick={handleRedirect}
+              className="mb-9 bg-[var(--primary)] mx-6 text-white py-2 rounded cursor-pointer hover:bg-[var(--primary-400)] transition"
+            >
+              Start
+            </button>
           </div>
-          </div>
-        )}
+        </div>
+      )}
     </header>
   );
 }

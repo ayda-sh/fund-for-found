@@ -17,21 +17,7 @@ function BrandAndOrganizations() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
-  const allItems = ["Product design", "Web design", "Software", "UI design"];
-
-  const filteredItems = allItems.filter(
-    (item) =>
-      !selectedItems.includes(item) &&
-      item.toLowerCase().includes(inputValue.toLowerCase())
-  );
-
-  const addItem = (item) => {
-    if (!selectedItems.includes(item)) {
-      setSelectedItems([...selectedItems, item]);
-      setInputValue("");
-      setIsDropdownOpen(false);
-    }
-  };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -239,40 +225,17 @@ function BrandAndOrganizations() {
             </label>
             <div className="mt-1" ref={wrapperRef}>
               <div className="flex flex-wrap items-center gap-2 p-1 border border-[var(--primary-300)] rounded-md">
-                {selectedItems.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center bg-[var(--light-3)] text-[var(--gray-4)] px-3 py-1 rounded text-sm"
-                  >
-                    {item}
-                  </div>
-                ))}
+               
 
                 <input
                   type="text"
-                  value={inputValue}
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                    setIsDropdownOpen(true);
-                  }}
-                  onFocus={() => setIsDropdownOpen(true)}
+                 
+                  
                   className="flex-1 min-w-[100px] p-1 outline-none bg-transparent"
                 />
               </div>
 
-              {isDropdownOpen && filteredItems.length > 0 && (
-                <div className="mt-1 w-full border border-[var(--light-3)] rounded-md shadow-lg max-h-60 overflow-auto">
-                  {filteredItems.map((item, index) => (
-                    <div
-                      key={index}
-                      onClick={() => addItem(item)}
-                      className="p-2 hover:bg-[var(--primary-50)] text-[var(--gray-4)] text-sm cursor-pointer"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              )}
+            
             </div>
           </div>
 

@@ -46,7 +46,10 @@ function LoginForm() {
       );
       console.log("User logged in:", response.data);
       localStorage.setItem("token", response.data.jwt);
-      router.push("/");
+      const { user: userInfo } = response.data;
+     
+      localStorage.setItem("user", JSON.stringify(userInfo)); 
+      router.push("/brand-and-organizations");
     } catch (error) {
       setError(error);
     } finally {

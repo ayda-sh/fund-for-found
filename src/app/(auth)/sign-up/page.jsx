@@ -48,7 +48,9 @@ function SignUp() {
         user
       );
       console.log("User successfully signed up", response.data);
+      const { user: userInfo } = response.data;
       localStorage.setItem("token", response.data.jwt);
+      localStorage.setItem("user", JSON.stringify(userInfo)); 
       router.push("/sign-up/confirm-email");
     } catch (error) {
       setError(

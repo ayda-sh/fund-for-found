@@ -1,7 +1,26 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 function HomePage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+  const handleRedirect = () => {
+    if (isAuthenticated) {
+      router.push("/brand-and-organizations"); 
+    } else {
+      router.push("/login"); 
+    }
+  };
   return (
     <div className="container mx-auto md:py-24 py-16">
       <div className="flex flex-col justify-center text-center max-w-5xl mx-auto gap-8 px-6">
@@ -33,11 +52,13 @@ function HomePage() {
             </p>
           </div>
           <div className="flex flex-col gap-3">
-            <Link href="/sign-up">
-              <button className="bg-[var(--primary)] w-65 h-10 rounded-sm text-[var(--color-white)]">
-                Start
-              </button>
-            </Link>
+            <button
+              onClick={handleRedirect}
+              className="bg-[var(--primary)] hover:bg-[var(--primary-400)] transition w-65 h-10 rounded-sm text-[var(--color-white)] cursor-pointer"
+            >
+              Start
+            </button>
+
             <Link className="text-[var(--primary-300)]" href="/about">
               learn more
             </Link>
