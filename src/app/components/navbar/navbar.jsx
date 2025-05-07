@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Search from "../search/search";
+import UserAccountMenu from "../modal/useraccountmenu/useraccountmenu";
 
 export function NavBar() {
   const Links = [
@@ -28,6 +29,7 @@ export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [searh, setSearch] = useState(false);
   const [user, setUser] = useState(false);
+  const [modal, setModal] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -76,7 +78,7 @@ export function NavBar() {
             </div>
 
             {user ? (
-              <div className="relative md:inline-block hidden">
+              <div onClick={() => setModal(!modal)} className="relative md:inline-block hidden">
                 <Image
                   src="/images/user-avatar.png"
                   width={40}
@@ -96,6 +98,8 @@ export function NavBar() {
               </button>
             )}
           </div>
+
+          {modal && <UserAccountMenu/>}
           <div className="md:hidden">
             <div className="flex">
               <button onClick={() => setSearch(!searh)}>
