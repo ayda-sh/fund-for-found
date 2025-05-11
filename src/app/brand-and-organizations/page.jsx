@@ -17,17 +17,15 @@ function BrandAndOrganizations() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubcategory, setSelectedSubcategory] = useState("");
 
-  
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+  //       setIsDropdownOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => document.removeEventListener("mousedown", handleClickOutside);
+  // }, []);
 
   // get categories from api
   const getCategories = async () => {
@@ -48,6 +46,7 @@ function BrandAndOrganizations() {
         "https://fund-for-found-backend-13.onrender.com/api/subcategories?populate=category"
       );
       setSubcategory(res.data.data);
+      console.log("Subcategories:", subcategory);
     } catch (error) {
       console.error("Failed to fetch subcategories:", error);
     }
@@ -127,6 +126,7 @@ function BrandAndOrganizations() {
                 id="brandName"
                 name="brandName"
                 required
+                data-has-listeners="true"
                 className="mt-1 block w-full border border-[var(--primary-300)] rounded-md p-2"
               />
             </div>
@@ -225,17 +225,12 @@ function BrandAndOrganizations() {
             </label>
             <div className="mt-1" ref={wrapperRef}>
               <div className="flex flex-wrap items-center gap-2 p-1 border border-[var(--primary-300)] rounded-md">
-               
-
                 <input
                   type="text"
-                 
-                  
+                  data-has-listeners="true"
                   className="flex-1 min-w-[100px] p-1 outline-none bg-transparent"
                 />
               </div>
-
-            
             </div>
           </div>
 
@@ -248,6 +243,7 @@ function BrandAndOrganizations() {
               className="mr-2 leading-tight"
               checked={isChecked}
               onChange={() => setIsChecked(!isChecked)}
+              data-has-listeners="true"
             />
             <label htmlFor="terms" className="text-sm text-[var(--gray-3)]">
               I agree with the
