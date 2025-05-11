@@ -20,8 +20,8 @@ function UserAccountMenu() {
   };
 
   return (
-    <div className="absolute inset-0 md:top-[10.7%] top-0 bg-[#95959599] z-9">
-      <div className="bg-white absolute top-0 md:right-50 right-0 p-4 md:rounded-2xl rounded-b-3xl flex flex-col md:w-[330px] w-[300px]">
+    <div className="fixed inset-0 md:top-[10.7%] top-20 left-0 bg-[#95959599] z-50 transition-all duration-300">
+      <div className="bg-white absolute top-0 md:right-50 right-0 p-4 md:rounded-2xl rounded-b-3xl flex flex-col md:w-[330px] max-w-[300px]">
         <div className="flex gap-5 items-center border-b border-[var(--light-3)] pb-2">
           <div>
             <Image
@@ -102,7 +102,10 @@ function UserAccountMenu() {
           <h6 className="text-[var(--gray-3)]">Settings</h6>
         </button>
 
-        <button className="flex gap-2 mt-4 cursor-pointer" onClick={handleLogout}>
+        <button
+          className="flex gap-2 mt-4 cursor-pointer"
+          onClick={handleLogout}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -118,9 +121,7 @@ function UserAccountMenu() {
             />
           </svg>
 
-          <h6  className="text-[var(--gray-3)]">
-            Log Out
-          </h6>
+          <h6 className="text-[var(--gray-3)]">Log Out</h6>
         </button>
       </div>
     </div>

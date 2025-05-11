@@ -33,7 +33,7 @@ function Welcome() {
                 Go homepage
               </Link>
               <Link
-                href="#"
+                href="/brand-and-organizations"
                 className="w-full bg-[var(--primary)] text-white py-3 rounded-md focus:outline-none text-sm text-center"
               >
                 Start project

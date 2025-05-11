@@ -33,7 +33,7 @@ function BrandAndOrganizations() {
   const getCategories = async () => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/categories`
+        "https://fund-for-found-backend-13.onrender.com/api/categories"
       );
       setCategory(res.data.data);
     } catch (error) {
@@ -45,7 +45,7 @@ function BrandAndOrganizations() {
   const getSubCategories = async () => {
     try {
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/subcategories?populate=category`
+        "https://fund-for-found-backend-13.onrender.com/api/subcategories?populate=category"
       );
       setSubcategory(res.data.data);
     } catch (error) {

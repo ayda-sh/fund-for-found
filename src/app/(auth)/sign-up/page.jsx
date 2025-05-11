@@ -51,7 +51,7 @@ function SignUp() {
       const { user: userInfo } = response.data;
       localStorage.setItem("token", response.data.jwt);
       localStorage.setItem("user", JSON.stringify(userInfo)); 
-      router.push("/sign-up/confirm-email");
+      router.push("/sign-up/welcome");
     } catch (error) {
       setError(
         error.response?.data?.message || "An unexpected error occurred."
