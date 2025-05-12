@@ -19,6 +19,13 @@ function UserAccountMenu() {
     router.push("/");
   };
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 md:top-[10.7%] top-20 left-0 bg-[#95959599] z-50 transition-all duration-300">
       <div className="bg-white absolute top-0 md:right-50 right-0 p-4 md:rounded-2xl rounded-b-3xl flex flex-col md:w-[330px] max-w-[300px]">
