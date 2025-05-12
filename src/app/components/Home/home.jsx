@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -7,6 +8,7 @@ import { useEffect, useState } from "react";
 function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
+  
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -16,22 +18,24 @@ function HomePage() {
   }, []);
   const handleRedirect = () => {
     if (isAuthenticated) {
-      router.push("/brand-and-organizations"); 
+      router.push("/brand-and-organizations");
     } else {
-      router.push("/login"); 
+      router.push("/login");
     }
   };
   return (
     <div className="container mx-auto md:py-24 py-16">
       <div className="flex flex-col justify-center text-center max-w-5xl mx-auto gap-8 px-6">
         <h1 className="text-[var(--secondary)] md:text-4xl text-3xl font-semibold text-left md:text-center">
+         
           Create your profile and take the first step towards new opportunities
+         
         </h1>
         <p className="text-[var(--light-1)] md:text-center text-base font-light text-left">
-          By creating your account, you'll gain access to a thriving community
+          By creating your account, you`ll gain access to a thriving community
           where brands and individuals are committed to offering you ongoing
           support. This support network will empower you with the resources,
-          guidance, and connections you need to succeed, ensuring that you're
+          guidance, and connections you need to succeed, ensuring that you`re
           never alone on your journey
         </p>
         <div className="flex flex-col justify-center items-center mx-auto w-80 border border-[var(--primary)] rounded-2xl px-8 py-8">
@@ -47,7 +51,7 @@ function HomePage() {
           </h2>
           <div className="text-left">
             <p className="text-[var(--light-1)]  mt-4 mb-16">
-              If your brand is established and you're looking for continuous
+              If your brand is established and you`re looking for continuous
               support, get started now.
             </p>
           </div>

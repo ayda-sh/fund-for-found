@@ -50,8 +50,6 @@ export function NavBar() {
     setIsOpen(!isOpen);
   };
 
- 
-
   return (
     <header>
       <nav className="p-4 border-b border-[var(--primary-100)] w-full bg-white">
@@ -124,7 +122,10 @@ export function NavBar() {
                 </svg>
               </button>
               {user ? (
-                <div className="relative inline-block mr-3">
+                <button
+                  onClick={() => setModal(!modal)}
+                  className="relative inline-block mr-3"
+                >
                   <Image
                     src="/images/user-avatar.png"
                     width={40}
@@ -134,7 +135,7 @@ export function NavBar() {
                   <span className="absolute inset-0 flex items-center justify-center text-[var(--primary)] font-bold">
                     {user.username.slice(0, 2).toUpperCase()}
                   </span>
-                </div>
+                </button>
               ) : (
                 <button
                   onClick={() => router.push("/sign-up")}

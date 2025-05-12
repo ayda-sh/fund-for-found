@@ -46,7 +46,7 @@ function BrandAndOrganizations() {
         "https://fund-for-found-backend-13.onrender.com/api/subcategories?populate=category"
       );
       setSubcategory(res.data.data);
-      console.log("Subcategories:", subcategory);
+     
     } catch (error) {
       console.error("Failed to fetch subcategories:", error);
     }
