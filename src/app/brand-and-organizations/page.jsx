@@ -23,7 +23,7 @@ function BrandAndOrganizations() {
 
   const getCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:1337/api/categories");
+      const res = await axios.get("https://fund-for-found-backend-13.onrender.com/api/categories");
       console.log("Categories fetched:", res.data.data);
       setCategory(res.data.data);
     } catch (error) {
@@ -34,7 +34,7 @@ function BrandAndOrganizations() {
   const getSubCategories = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:1337/api/subcategories?populate=category"
+        "https://fund-for-found-backend-13.onrender.com/api/subcategories?populate=category"
       );
       console.log("Subcategories fetched:", res.data.data);
       setSubcategory(res.data.data);
@@ -90,7 +90,7 @@ function BrandAndOrganizations() {
   console.log("Submitting data:", body);
 
   try {
-    const res = await axios.post("http://localhost:1337/api/brands", body);
+    const res = await axios.post("https://fund-for-found-backend-13.onrender.com/api/brands", body);
     if (res.status === 201) {
       alert("Brand created successfully!");
     }
