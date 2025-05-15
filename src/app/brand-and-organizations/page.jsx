@@ -3,11 +3,12 @@ import Link from "next/link";
 import { NavBar } from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import countries from "@/data/countries.json";
 import Categoriesdata from "../components/categoriesdata/categoriesdata";
 import Notlogged from "../components/modal/notlogged/notlogged";
+import { useRouter } from "next/navigation";
 
 function BrandAndOrganizations() {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -18,6 +19,8 @@ function BrandAndOrganizations() {
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notLogged, setNotLogged] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (event) => {
     setSelectedCountry(event.target.value);
@@ -41,6 +44,7 @@ function BrandAndOrganizations() {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     const jwt = localStorage.getItem("token");
 
     if (!jwt) {
@@ -60,12 +64,14 @@ function BrandAndOrganizations() {
     };
 
     try {
-      const res = await axios.post("https://fund-for-found-backend-13.onrender.com/api/brands", body);
+      const res = await axios.post("http://localhost:1337/api/brands", body);
       if (res.status === 201) {
-        alert("Brand created successfully!");
+        router.push("/brand-and-organizations/detailed-info");
       }
     } catch (error) {
       console.log("Error creating brand:", error.response?.data);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -191,8 +197,25 @@ function BrandAndOrganizations() {
                 ?
               </span>
             </label>
-            <div className="mt-1">
-              <div className="flex flex-wrap items-center gap-2 p-1 border border-[var(--primary-300)] rounded-md">
+            <div className="mt-1 relative">
+              <div className="flex flex-wrap items-center gap-2 p-1 border border-[var(--primary-300)] rounded-md ">
+                {tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="bg-[var(--light-3)] py-0.5 px-3 rounded text-[var(--gray-4)]"
+                  >
+                    {tag}
+                    <button
+                      type="button"
+                      className="ml-2 text-[var(--gray-4)]"
+                      onClick={() =>
+                        setTags(tags.filter((_, i) => i !== index))
+                      }
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
                 <input
                   type="text"
                   data-has-listeners="true"
@@ -200,19 +223,6 @@ function BrandAndOrganizations() {
                   className="flex-1 min-w-[100px] p-1 outline-none bg-transparent"
                 />
               </div>
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  style={{
-                    margin: "5px",
-                    padding: "5px",
-                    border: "1px solid #ddd",
-                    borderRadius: "5px",
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
             </div>
           </div>
 
@@ -244,7 +254,32 @@ function BrandAndOrganizations() {
               isChecked ? "bg-[var(--primary)]" : "bg-[var(--primary-100)]"
             }`}
           >
-            Continue
+            {isLoading ? (
+              <span className="flex justify-center items-center gap-2">
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              </span>
+            ) : (
+              "Continue"
+            )}
           </button>
         </form>
         {notLogged && <Notlogged />}
