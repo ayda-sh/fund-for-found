@@ -1,0 +1,96 @@
+{
+  "catandsubcat": [
+    { "category": "Technology & Innovation", "subcategory": "Software & Apps" },
+    {
+      "category": "Technology & Innovation",
+      "subcategory": "Consumer Electronics"
+    },
+    {
+      "category": "Technology & Innovation",
+      "subcategory": "Green Tech & Sustainability"
+    },
+    {
+      "category": "Technology & Innovation",
+      "subcategory": "Blockchain & Cryptocurrency"
+    },
+    {
+      "category": "Technology & Innovation",
+      "subcategory": "Biotech & Health Tech"
+    },
+    { "category": "Technology & Innovation", "subcategory": "Others" },
+    {
+      "category": "Creative art & media",
+      "subcategory": "Visual Arts & Design"
+    },
+    {
+      "category": "Creative art & media",
+      "subcategory": "Film, Video & Animation"
+    },
+    { "category": "Creative art & media", "subcategory": "Music & Audio" },
+    {
+      "category": "Creative art & media",
+      "subcategory": "Performing Arts & Theater"
+    },
+    {
+      "category": "Creative art & media",
+      "subcategory": "Fashion & Wearable Art"
+    },
+    {
+      "category": "Creative art & media",
+      "subcategory": "Writing & Publishing"
+    },
+    { "category": "Creative art & media", "subcategory": "Others" },
+    {
+      "category": "Business & Entrepreneurship",
+      "subcategory": "Startups & Small Businesses"
+    },
+    {
+      "category": "Business & Entrepreneurship",
+      "subcategory": "E-commerce & Digital Business"
+    },
+    {
+      "category": "Business & Entrepreneurship",
+      "subcategory": "Consulting & Professional Services"
+    },
+    {
+      "category": "Business & Entrepreneurship",
+      "subcategory": "Marketing & Sales"
+    },
+    { "category": "Business & Entrepreneurship", "subcategory": "Others" },
+    { "category": "Games & Entertainment", "subcategory": "Video Games" },
+    {
+      "category": "Games & Entertainment",
+      "subcategory": "Table top & Board Games"
+    },
+    {
+      "category": "Games & Entertainment",
+      "subcategory": "Interactive Media & VR/AR"
+    },
+    {
+      "category": "Games & Entertainment",
+      "subcategory": "Sports & Competitive Gaming"
+    },
+    { "category": "Games & Entertainment", "subcategory": "Others" },
+    {
+      "category": "Social Causes & Community",
+      "subcategory": "Environmental & Sustainability Initiatives"
+    },
+    {
+      "category": "Social Causes & Community",
+      "subcategory": "Community Development"
+    },
+    {
+      "category": "Social Causes & Community",
+      "subcategory": "Education & Youth Empowerment"
+    },
+    {
+      "category": "Social Causes & Community",
+      "subcategory": "Health & Wellness"
+    },
+    {
+      "category": "Social Causes & Community",
+      "subcategory": "Animal Welfare & Conservation"
+    },
+    { "category": "Social Causes & Community", "subcategory": "Others" }
+  ]
+}
