@@ -64,7 +64,7 @@ function BrandAndOrganizations() {
     };
 
     try {
-      const res = await axios.post("http://localhost:1337/api/brands", body);
+      const res = await axios.post("https://fund-for-found-backend-13.onrender.com/api/brands", body);
       if (res.status === 201) {
         router.push("/brand-and-organizations/detailed-info");
       }
