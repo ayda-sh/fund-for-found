@@ -50,6 +50,8 @@ export function NavBar() {
     setIsOpen(!isOpen);
   };
 
+  const handleModalClose = () => setModal(false);
+
   return (
     <header>
       <nav className="p-4 border-b border-[var(--primary-100)] w-full bg-white">
@@ -102,7 +104,7 @@ export function NavBar() {
             )}
           </div>
 
-          {modal && <UserAccountMenu />}
+          {modal && <UserAccountMenu onClose={handleModalClose} />}
           <div className="md:hidden">
             <div className="flex">
               <button onClick={() => setSearch(!searh)}>

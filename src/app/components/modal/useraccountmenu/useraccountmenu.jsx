@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-function UserAccountMenu() {
+function UserAccountMenu({ onClose }) {
   const [user, setUser] = useState(false);
   const router = useRouter();
+  const modalRef = useRef(null);
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -20,6 +21,19 @@ function UserAccountMenu() {
   };
 
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
+  useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "auto";
@@ -28,7 +42,10 @@ function UserAccountMenu() {
 
   return (
     <div className="fixed inset-0 md:top-[10.7%] top-20 left-0 bg-[#95959599] z-50 transition-all duration-300">
-      <div className="bg-white absolute top-0 md:right-50 right-0 p-4 md:rounded-2xl rounded-b-3xl flex flex-col md:w-[330px] max-w-[300px]">
+      <div
+        ref={modalRef}
+        className="bg-white absolute top-0 md:right-50 right-0 p-4 md:rounded-2xl rounded-b-3xl flex flex-col md:w-[330px] max-w-[300px]"
+      >
         <div className="flex gap-5 items-center border-b border-[var(--light-3)] pb-2">
           <div>
             <Image
