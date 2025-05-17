@@ -174,7 +174,7 @@ function LoginForm() {
                   </span>
                 ) : null}
                 <Link
-                  href="/forget-password"
+                  href="#"
                   className="text-sm text-[var(--primary)] mt-1"
                 >
                   Forget your password?

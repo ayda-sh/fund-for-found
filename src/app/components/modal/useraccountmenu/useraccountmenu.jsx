@@ -17,7 +17,7 @@ function UserAccountMenu({ onClose }) {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     setUser(null);
-    router.push("/");
+    router.push("/login");
   };
 
   useEffect(() => {
@@ -57,10 +57,16 @@ function UserAccountMenu({ onClose }) {
             />
           </div>
           <div>
-            <h6 className="text-[var(--gray-2)] text-sm font-medium">
-              {user.username}
-            </h6>
-            <p className="text-[var(--light-1)] text-sm">{user.email}</p>
+            {user ? (
+              <>
+                <h6 className="text-[var(--gray-2)] text-sm font-medium">
+                  {user.username}
+                </h6>
+                <p className="text-[var(--light-1)] text-xs">{user.email}</p>
+              </>
+            ) : (
+              <p>Not logged in</p>
+            )}
           </div>
         </div>
 
